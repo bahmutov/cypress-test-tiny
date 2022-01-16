@@ -1,6 +1,17 @@
 /// <reference types="cypress" />
-describe('page', () => {
-  it('works', () => {
-    cy.visit('https://example.cypress.io')
-  })
+
+it('does not work', () => {
+  cy.visit('index.html')
+  cy.get('#next-selector li')
+    .first()
+    .next('.selected')
+    .should('have.text', 'pineapples')
+})
+
+it('works', () => {
+  cy.visit('index.html')
+  cy.get('#next-selector li')
+    .first()
+    .next().next().next()
+    .should('have.text', 'pineapples')
 })
